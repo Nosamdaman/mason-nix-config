@@ -13,17 +13,11 @@
     boot.kernelPackages = pkgs.linuxPackages_latest;
 
     # Set the kernel command-line parameters. We'll use a quiet boot and set the kernel mode to our desired resolution.
-    boot.kernelParams = [ "quiet" "video=DP-1:3440x1440@144" ];
+    boot.kernelParams = [ "video=DP-1:3440x1440@144" ];
 
-    # Configure the boot process. We'll use systemd boot as our boot loader with Plymouth for a nice splash screen.
+    # Configure the boot process. We'll use systemd boot as our boot loader
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
-    boot.plymouth.enable = true;
-    systemd.services.plymouth-quit = {
-        serviceConfig = {
-            ExecStartPre = "/bin/sh -c \"sleep 10\"";
-        };
-    };
 
     # Add support for NVIDIA graphics cards
     hardware.graphics.enable = true;

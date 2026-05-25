@@ -58,6 +58,9 @@
         gtk4.theme = config.gtk.theme;
     };
 
+    # Include extra configs
+    imports = [ ../sway.nix ];
+
     # Let home manager manage itself and set the config version
     programs.home-manager.enable = true;
     home.stateVersion = "25.11";

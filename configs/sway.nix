@@ -64,5 +64,6 @@ in {
             };
         };
         extraConfig = "include conf.d/*";
+        extraOptions = [ "--unsupported-gpu" ];
     };
 }

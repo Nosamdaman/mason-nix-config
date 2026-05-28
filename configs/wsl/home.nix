@@ -8,6 +8,7 @@
     home.shell.enableFishIntegration = true;
 
     # Set up the automatic management of our XDG user directories
+    xdg.enable = true;
     xdg.userDirs = {
         enable = true;
         createDirectories = true;
@@ -34,6 +35,10 @@
                 ll = "ls -l --human-readable --time-style=long-iso";
                 la = "ll -a";
             };
+            generateCompletions = true;
+            interactiveShellInit = ''
+            eval (dircolors --c-shell $XDG_CONFIG_HOME/dircolors/solarized-dark) | true
+            '';
         };
         kakoune.enable = true;
         man = {
@@ -85,10 +90,17 @@
     };
 
     # Install any extra config files
-    xdg.configFile.fish_frozen_theme = {
-        source = ../../resources/fish_frozen_theme.fish;
-        target = "fish/conf.d/fish_frozen_theme.fish";
+    xdg.configFile = {
+        fish_frozen_theme = {
+            source = ../../resources/fish_frozen_theme.fish;
+            target = "fish/conf.d/fish_frozen_theme.fish";
+        };
+        dircolors-solarized-dark = {
+            source = ../../resources/dircolors.ansi-dark;
+            target = "dircolors/solarized-dark";
+        };
     };
+
 
     home.stateVersion = "26.05";
 }

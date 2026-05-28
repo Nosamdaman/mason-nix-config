@@ -1,10 +1,19 @@
 { config, pkgs, ... }:
 
 {
+    # Set our username and home directory
     home.username = "mason";
     home.homeDirectory = "/home/mason";
+
     home.shell.enableFishIntegration = true;
 
+    # Set up the automatic management of our XDG user directories
+    xdg.userDirs = {
+        enable = true;
+        createDirectories = true;
+    };
+
+    # Install and configure all programs with pre-defined config options
     programs = {
         home-manager.enable = true;
         fish = {
@@ -38,11 +47,13 @@
         gpg.enable = true;
     };
 
+    # Install all non-configurable packages
     home.packages = with pkgs; [
         pass-wayland
         tig
     ];
 
+    # Enable any necessary user services
     services = {
         gpg-agent = {
             enable = true;

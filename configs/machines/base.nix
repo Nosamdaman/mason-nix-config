@@ -56,6 +56,7 @@
     environment.systemPackages = with pkgs; [
         # Install coreutils and a few other packages I consider essential for a usable Linux system
         coreutils
+        util-linux
         gawkInteractive
         gnused
         unzip

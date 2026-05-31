@@ -128,4 +128,10 @@
             };
         };
     };
+
+    # Create our default users, this is just me for now
+    users.users.mason = {
+        isNormalUser = true;
+        extraGroups = [ "wheel" "networkmanager" ];
+    };
 }

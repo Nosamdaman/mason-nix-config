@@ -4,9 +4,12 @@
 # assumptions about hardware and doesn't come with a desktop environment pre-configured.
 { pkgs, ... }: {
     # Configure nix itself. We'll allow for the installation of non-free software and enable support for flakes and the
-    # new nix command line
+    # new nix command line. We'll also increase the download buffer size.
     nixpkgs.config.allowUnfree = true;
-    nix.settings.experimental-features = [ "nix-command" "flakes" ];
+    nix.settings = {
+        download-buffer-size = 536870912;
+        experimental-features = [ "nix-command" "flakes" ];
+    };
 
     # Use the latest kernel
     boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -94,10 +97,10 @@
         doc.enable = true;
         info.enable = true;
         man = {
-            enable = true
+            enable = true;
             cache = {
                 enable = true;
-                generateAtRuntime = true;
+                generateAtRuntime = false;
             };
             man-db.enable = true;
         };

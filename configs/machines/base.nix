@@ -31,6 +31,9 @@
         keyMap = "us";
     };
 
+    # Enable the power-profiles-daemon service for better CPU scaling behavior
+    services.power-profiles-daemon.enable = true;
+
     # Here's where we'll some of the software installed on the machine. These packages have more complex configurations
     # than the standard system packages, so they're handled differently.
     programs = {
@@ -58,18 +61,39 @@
     # Here's where we'll configure the rest of the system packages. These just get installed as is.
     environment.systemPackages = with pkgs; [
         # Install coreutils and a few other packages I consider essential for a usable Linux system
-        coreutils
-        util-linux
-        gawkInteractive
-        gnused
-        unzip
+        acl
+        attr
+        btop-cuda
+        bzip2
+        coreutils-full
         curl
-        wget
-        python3
+        cpio
+        gawkInteractive
+        getent
+        getconf
+        gnugrep
+        gnupatch
+        gnused
+        gnutar
+        gzip
+        xz
+        libcap
+        mkpasswd
+        ncurses
+        netcat
+        nvtopPackages.full
         openssh
         openssl_4_0
-        btop-cuda
-        nvtopPackages.full
+        procps
+        python3
+        su
+        sudo
+        time
+        unzip
+        util-linux
+        wget
+        which
+        zstd
 
         # Vim and Kakoune are our primary text editors, we'll also install some Kakoune plugins that I like
         vim

@@ -29,7 +29,15 @@
                 ];
             };
             coruscant = nixpkgs.lib.nixosSystem {
-                modules = [ ./configs/machines/coruscant/configuration.nix ];
+                modules = [
+                    ./configs/machines/coruscant/configuration.nix
+                    home-manager.nixosModules.home-manager {
+                        home-manager.useGlobalPkgs = true;
+                        home-manager.useUserPackages = true;
+                        home-manager.extraSpecialArgs = { inherit inputs; };
+                        home-manager.users.mason = ./configs/users/base.nix;
+                    }
+                ];
             };
             coruscant-minimal = nixpkgs.lib.nixosSystem {
                 modules = [ ./configs/machines/coruscant-minimal/configuration.nix ];

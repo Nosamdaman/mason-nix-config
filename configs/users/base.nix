@@ -10,6 +10,13 @@
         enableFishIntegration = true;
     };
 
+    # Set up the automatic management of our XDG user directories
+    xdg.enable = true;
+    xdg.userDirs = {
+        enable = true;
+        createDirectories = true;
+    };
+
     # Configure all programs with pre-defined configuration options
     programs = {
         # Let home manager manage itself

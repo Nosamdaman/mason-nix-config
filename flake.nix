@@ -35,7 +35,7 @@
                         home-manager.useGlobalPkgs = true;
                         home-manager.useUserPackages = true;
                         home-manager.extraSpecialArgs = { inherit inputs; };
-                        home-manager.users.mason = ./configs/users/base.nix;
+                        home-manager.users.mason = ./configs/users/sway.nix;
                     }
                 ];
             };

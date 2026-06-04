@@ -1,5 +1,5 @@
 # My base Home-Manager configuration
-{ pkgs, ... }: {
+{ ... }: {
     # Set the basic user profile information
     home.username = "mason";
     home.homeDirectory = "/home/mason";

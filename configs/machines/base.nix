@@ -66,17 +66,18 @@
         btop-cuda
         bzip2
         coreutils-full
-        curl
         cpio
+        curl
+        diffutils
+        findutils
         gawkInteractive
-        getent
         getconf
+        getent
         gnugrep
         gnupatch
         gnused
         gnutar
         gzip
-        xz
         libcap
         mkpasswd
         ncurses
@@ -93,6 +94,7 @@
         util-linux
         wget
         which
+        xz
         zstd
 
         # Vim and Kakoune are our primary text editors, we'll also install some Kakoune plugins that I like
@@ -102,15 +104,29 @@
         kak-tree-sitter
 
         # Install the primary suite of development tools
-        gnupg
-        pass-wayland
-        git-credential-manager
-        tig
-        gcc
+        autoconf
+        automake
+        binutils
+        bison
         clang
         cmakeWithGui
+        debugedit
+        fakeroot
+        file
+        flex
+        gcc
+        gettext
+        git-credential-manager
+        gnum4
+        gnumake
+        gnupg
+        libpkgconf
+        libtool
         meson
         ninja
+        pass-wayland
+        texinfo
+        tig
     ];
 
     # Configure how documentation is generated for the system. In particular, we'll use man-db as our pager and enable

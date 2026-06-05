@@ -1,5 +1,5 @@
 # My base Home-Manager configuration
-{ ... }: {
+{ pkgs, ... }: {
     # Set the basic user profile information
     home.username = "mason";
     home.homeDirectory = "/home/mason";
@@ -73,6 +73,25 @@
                 core = {
                     editor = "kak";
                 };
+            };
+        };
+
+        # Configure the BTOP process manager
+        btop = {
+            enable = true;
+            package = pkgs.btop-cuda;
+            settings = {
+                color_theme = "solarized_dark";
+                theme_background = true;
+                truecolor = true;
+                vim_keys = true;
+                disable_mouse = false;
+                rounded_corners = true;
+                terminal_sync = true;
+                update_ms = 1000;
+                proc_sorting = "pid";
+                proc_tree = true;
+                proc_filter_kernel = true;
             };
         };
     };

@@ -35,8 +35,8 @@
 
     # Install the remaining packages for our desktop environment
     environment.systemPackages = with pkgs; [
-        # Alacritty will be our terminal emulator
-        alacritty
+        # Foot will be our terminal emulator
+        foot
 
         # Rofi will be our launcher
         rofi

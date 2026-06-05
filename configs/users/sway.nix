@@ -120,7 +120,7 @@ in {
         settings = {
             main = {
                 shell = "fish";
-                font = "FiraCode Nerd Font:size=12";
+                font = "FiraCode Nerd Font:size=12:fontfeatures=zero:fontfeatures=ss04";
                 bold-text-in-bright = "no";
             };
             colors-dark = {

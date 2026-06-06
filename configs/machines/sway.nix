@@ -41,8 +41,9 @@
         # Rofi will be our launcher
         rofi
 
-        # Mako will be our notification daemon
+        # Mako will be our notification daemon and libnotify will be the intermediate handler
         mako
+        libnotify
     ];
 
     # Enable a couple of XDG portals to handle application communication and a few other Wayland features

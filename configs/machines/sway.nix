@@ -44,6 +44,9 @@
         # Mako will be our notification daemon and libnotify will be the intermediate handler
         mako
         libnotify
+
+        # Pavucontrol is how we'll manage audio devices
+        pavucontrol
     ];
 
     # Enable a couple of XDG portals to handle application communication and a few other Wayland features

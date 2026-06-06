@@ -29,10 +29,16 @@
     # Enable support for bluetooth
     hardware.bluetooth.enable = true;
 
+    # Enable supprt for Steam, the ultimate PC Gaming platform
+    programs.steam.enable = true;
+
     # Install any additional system-wide packages
     environment.systemPackages = with pkgs; [
         # BlueTUI provides a nice TUI from which we can manage our bluetooth connections
         bluetui
+
+        # MangoHUD is a game performance HUD and FPS limiter
+        mangohud
     ];
 
     # This option defines the first version of NixOS you have installed on this particular machine,

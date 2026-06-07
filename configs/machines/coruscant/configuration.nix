@@ -26,6 +26,15 @@
     boot.initrd.kernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
     boot.kernelParams = [ "quiet" "video=DP-1:3440x1440@144" ];
 
+    # Set the video mode for sway globally using a custom config
+    environment.etc.sway-output = {
+        enable = true;
+        target = "/sway/config.d/output.conf";
+        text = ''
+        output DP-1 mode 3440x1440@144Hz
+        '';
+    };
+
     # Enable support for bluetooth
     hardware.bluetooth.enable = true;
 

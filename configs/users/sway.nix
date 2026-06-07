@@ -48,8 +48,8 @@ in {
         enable = true;
         config = {
             modifier = "Mod4";
-            menu = "rofi -show drun";
-            terminal = "foot";
+            menu = "rofi -show-icons -show drun -run-command \"uwsm app -- {cmd}\"";
+            terminal = "uwsm app -- foot";
             colors = {
                 background = colors_sway.red;
                 focused = {
@@ -104,6 +104,7 @@ in {
         };
         extraConfig = ''
             titlebar_border_thickness 2
+            include /etc/sway/config.d/*
             include conf.d/*
             '';
         extraOptions = [ "--unsupported-gpu" ];

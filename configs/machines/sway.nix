@@ -6,32 +6,76 @@
     # Configure greetd as our display manager
     services.greetd = {
         enable = true;
-        useTextGreeter = true;
+        useTextGreeter = false;
         settings.default_session = {
-            command = "${pkgs.tuigreet}/bin/tuigreet --time --remember-session";
+            command = "${pkgs.sway}/bin/sway --unsupported-gpu --config /etc/greetd/sway.conf >> /dev/null 2>&1";
+        };
+    };
+    environment.etc.greetd-sway = {
+        enable = true;
+        target = "/greetd/sway.conf";
+        text = ''
+        exec "${pkgs.regreet}/bin/regreet; ${pkgs.sway}/bin/swaymsg exit"
+        include /etc/sway/config.d/*
+        '';
+    };
+    programs.regreet = {
+        enable = true;
+    };
+    environment.sessionVariables = {
+        UWSM_SILENT_START = "1";
+    };
+
+    # Enable Pipewire as our audio server
+    security.rtkit.enable = true;
+    services.pipewire = {
+        enable = true;
+        alsa.enable = true;
+        alsa.support32Bit = true;
+        pulse.enable = true;
+        jack.enable = true;
+    };
+
+    # Sway is our wayland compositor (obviously)
+    #
+    # Note that we'll add support for unsupported GPUs by default and XWayland. We'll also configure our input settins
+    # such that numlock is on by default and mouse acceleration is disabled.
+    programs.sway = {
+        enable = true;
+        xwayland.enable = true;
+        extraOptions = [ "--unsupported-gpu" ];
+    };
+    environment.etc.sway-input = {
+        enable = true;
+        target = "/sway/config.d/input.conf";
+        text = ''
+        input "*" {
+          accel_profile flat
+          xkb_numlock enabled
+        }
+        '';
+    };
+
+    # Enable UWSM, which will manage our compositor as a collection systemd targets
+    programs.uwsm = {
+        enable = true;
+        waylandCompositors = {
+            sway = {
+                prettyName = "Sway";
+                comment = "Sway compositor managed by UWSM";
+                binPath = "/run/current-system/sw/bin/sway";
+            };
         };
     };
 
-    # Configure all programs with complex configuration options
-    programs = {
-        # Sway is our wayland compositor (obviously)
-        #
-        # Note that we'll add support for unsupported GPUs by default and XWayland
-        sway = {
-            enable = true;
-            xwayland.enable = true;
-            extraOptions = [ "--unsupported-gpu" ];
-        };
-
-        # Thunar will be our file manager, we'll add a few plugins to round out its feature set
-        thunar = {
-            enable = true;
-            plugins = with pkgs; [ thunar-archive-plugin thunar-volman ];
-        };
-
-        # Firefox will be our primary web browser
-        firefox.enable = true;
+    # Thunar will be our file manager, we'll add a few plugins to round out its feature set
+    programs.thunar = {
+        enable = true;
+        plugins = with pkgs; [ thunar-archive-plugin thunar-volman ];
     };
+
+    # Firefox will be our primary web browser
+    programs.firefox.enable = true;
 
     # Install the remaining packages for our desktop environment
     environment.systemPackages = with pkgs; [

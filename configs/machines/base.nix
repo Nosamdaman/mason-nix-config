@@ -27,7 +27,8 @@
     # Set our locale to US English in UTF-8 and configure the Linux console
     i18n.defaultLocale = "en_US.UTF-8";
     console = {
-        font = "Lat2-Terminus16";
+        enable = true;
+        earlySetup = true;
         keyMap = "us";
     };
 

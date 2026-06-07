@@ -47,6 +47,9 @@
 
         # Pavucontrol is how we'll manage audio devices
         pavucontrol
+
+        # SwayBG will manager our wallpaper
+        swaybg
     ];
 
     # Enable a couple of XDG portals to handle application communication and a few other Wayland features

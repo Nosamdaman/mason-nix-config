@@ -50,12 +50,8 @@ in {
             modifier = "Mod4";
             menu = "rofi -show drun";
             terminal = "foot";
-            focus = {
-                followMouse = "yes";
-                mouseWarping = "container";
-            };
             colors = {
-                background = colors_sway.black;
+                background = colors_sway.red;
                 focused = {
                     background = colors_sway.base02;
                     border = colors_sway.cyan;
@@ -78,14 +74,38 @@ in {
                     text = colors_sway.base01;
                 };
             };
+            defaultWorkspace = "workspace number 1";
+            floating = {
+                border = 2;
+                titlebar = false;
+            };
+            focus = {
+                followMouse = "yes";
+                mouseWarping = "container";
+            };
+            fonts = {
+                names = [ "Noto Sans" ];
+                size = 11.0;
+            };
+            gaps = {
+                inner = 4;
+                outer = 0;
+            };
             input = {
                 "*" = {
                     accel_profile = "flat";
                     xkb_numlock = "enabled";
                 };
             };
+            window = {
+                border = 2;
+                titlebar = false;
+            };
         };
-        extraConfig = "include conf.d/*";
+        extraConfig = ''
+            titlebar_border_thickness 2
+            include conf.d/*
+            '';
         extraOptions = [ "--unsupported-gpu" ];
     };
 
@@ -122,6 +142,9 @@ in {
                 shell = "fish";
                 font = "FiraCode Nerd Font:size=12:fontfeatures=zero:fontfeatures=ss04";
                 bold-text-in-bright = "no";
+            };
+            mouse = {
+                hide-when-typing = true;
             };
             colors-dark = {
                 foreground = colors_foot.base0;

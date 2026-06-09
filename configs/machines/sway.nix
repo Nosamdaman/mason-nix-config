@@ -8,7 +8,7 @@
         enable = true;
         useTextGreeter = false;
         settings.default_session = {
-            command = "${pkgs.sway}/bin/sway --unsupported-gpu --config /etc/greetd/sway.conf >> /dev/null 2>&1";
+            command = "env GTK_USE_PORTAL=0 GDK_DEBUG=no-portals ${pkgs.sway}/bin/sway --unsupported-gpu --config /etc/greetd/sway.conf >> /dev/null 2>&1";
         };
     };
     environment.etc.greetd-sway = {
@@ -21,6 +21,18 @@
     };
     programs.regreet = {
         enable = true;
+        theme = {
+            name = "Breeze-Dark";
+            package = pkgs.kdePackages.breeze-gtk;
+        };
+        iconTheme = {
+            name = "breeze-dark";
+            package = pkgs.kdePackages.breeze-icons;
+        };
+        cursorTheme = {
+            name = "Bibata-Modern-Classic";
+            package = pkgs.bibata-cursors;
+        };
     };
     environment.sessionVariables = {
         UWSM_SILENT_START = "1";

@@ -39,7 +39,10 @@
     hardware.bluetooth.enable = true;
 
     # Enable supprt for Steam, the ultimate PC Gaming platform
-    programs.steam.enable = true;
+    programs.steam = {
+        enable = true;
+        extraCompatPackages = [ pkgs.proton-ge-bin ];
+    };
 
     # Install any additional system-wide packages
     environment.systemPackages = with pkgs; [

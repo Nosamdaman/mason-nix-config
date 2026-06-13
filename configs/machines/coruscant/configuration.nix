@@ -44,6 +44,9 @@
         extraCompatPackages = [ pkgs.proton-ge-bin ];
     };
 
+    # Enable gamescope, a micro-compositor that can help with game compatibility
+    programs.gamescope.enable = true;
+
     # Install any additional system-wide packages
     environment.systemPackages = with pkgs; [
         # BlueTUI provides a nice TUI from which we can manage our bluetooth connections

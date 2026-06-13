@@ -103,10 +103,11 @@ in {
             };
         };
         extraConfig = ''
+            exec "uwsm app -- ${pkgs.swayidle}/bin/swayidle -w -C $XDG_CONFIG_HOME/swayidle/config"
             titlebar_border_thickness 2
             include /etc/sway/config.d/*
             include conf.d/*
-            '';
+        '';
         extraOptions = [ "--unsupported-gpu" ];
     };
 
@@ -168,5 +169,13 @@ in {
                 bright7 = colors_foot.base3;
             };
         };
+    };
+
+    # Configure swayidle
+    xdg.configFile.swayidle = {
+        text = ''
+            timeout 300 '${pkgs.sway}/bin/swaymsg "output * power off"' resume '${pkgs.sway}/bin/swaymsg "output * power on"'
+        '';
+        target = "swayidle/config";
     };
 }

@@ -8,16 +8,14 @@
         enable = true;
         useTextGreeter = false;
         settings.default_session = {
-            command = "env GTK_USE_PORTAL=0 GDK_DEBUG=no-portals ${pkgs.sway}/bin/sway --unsupported-gpu --config /etc/greetd/sway.conf >> /dev/null 2>&1";
+            command = let
+                swayLaunchScript = pkgs.writeShellScriptBin "swayLaunchScript" ''
+                    export GTK_USE_PORTAL=0
+                    export GDK_DEBUG=no-portals
+                    ${pkgs.sway}/bin/sway --unsupported-gpu --config /etc/greetd/sway.conf >> /dev/null 2>&1
+                '';
+            in "${swayLaunchScript}/bin/swayLaunchScript";
         };
-    };
-    environment.etc.greetd-sway = {
-        enable = true;
-        target = "/greetd/sway.conf";
-        text = ''
-        exec "${pkgs.regreet}/bin/regreet; ${pkgs.sway}/bin/swaymsg exit"
-        include /etc/sway/config.d/*
-        '';
     };
     programs.regreet = {
         enable = true;
@@ -34,8 +32,50 @@
             package = pkgs.bibata-cursors;
         };
     };
+
+    # Set global environment variables
     environment.sessionVariables = {
+        # This variable tells UWSM to not print to stdout unless there are erros, important for our quiet startup
         UWSM_SILENT_START = "1";
+
+        # This variable tells any wlroots-based wayland compositors to use the Vulkan backend
+        WLR_RENDERER = "vulkan";
+    };
+
+    # Define any global configuration files
+    environment.etc = {
+        # This file will configure sway when it is run as the compositor hosting our display manager
+        greetd-sway = {
+            enable = true;
+            target = "/greetd/sway.conf";
+            text = ''
+                exec "${pkgs.swayidle}/bin/swayidle -w -C /etc/greetd/swayidle.conf"
+                include /etc/sway/config.d/*
+                exec "${pkgs.regreet}/bin/regreet; ${pkgs.sway}/bin/swaymsg exit"
+            '';
+        };
+
+        # This file will configure swayidle when the display manager is up
+        greetd-swayidle = {
+            enable = true;
+            target = "/greetd/swayidle.conf";
+            text = ''
+                timeout 300 '${pkgs.sway}/bin/swaymsg "output * power off"' resume '${pkgs.sway}/bin/swaymsg "output * power on"'
+            '';
+        };
+
+        # This file configures the global input settings for sway. In particular, we want to disable mouse acceleration
+        # and enable numlock by default.
+        sway-input = {
+            enable = true;
+            target = "/sway/config.d/input.conf";
+            text = ''
+                input "*" {
+                  accel_profile flat
+                  xkb_numlock enabled
+                }
+            '';
+        };
     };
 
     # Enable Pipewire as our audio server
@@ -56,16 +96,6 @@
         enable = true;
         xwayland.enable = true;
         extraOptions = [ "--unsupported-gpu" ];
-    };
-    environment.etc.sway-input = {
-        enable = true;
-        target = "/sway/config.d/input.conf";
-        text = ''
-        input "*" {
-          accel_profile flat
-          xkb_numlock enabled
-        }
-        '';
     };
 
     # Enable UWSM, which will manage our compositor as a collection systemd targets
@@ -106,6 +136,9 @@
 
         # SwayBG will manager our wallpaper
         swaybg
+
+        # SwayIdle will be our idle daemon
+        swayidle
     ];
 
     # Enable a couple of XDG portals to handle application communication and a few other Wayland features

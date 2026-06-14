@@ -1,7 +1,7 @@
 # This file contains my configuration for a Sway-based linux desktop
 { pkgs, ... }: {
-    # We'll base this off our base configuration
-    imports = [ ./base.nix ];
+    # We'll base this off our desktop configuration
+    imports = [ ./desktop.nix ];
 
     # Configure greetd as our display manager
     services.greetd = {
@@ -118,9 +118,6 @@
 
     # Enable GVfs, a service that will automatically mount stuff for us and iteracti with Thunar
     services.gvfs.enable = true;
-
-    # Firefox will be our primary web browser
-    programs.firefox.enable = true;
 
     # Install the remaining packages for our desktop environment
     environment.systemPackages = with pkgs; [

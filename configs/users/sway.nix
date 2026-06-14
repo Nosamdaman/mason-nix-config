@@ -47,9 +47,6 @@ in {
     wayland.windowManager.sway = {
         enable = true;
         config = {
-            modifier = "Mod4";
-            menu = "rofi -show-icons -show drun -run-command \"uwsm app -- {cmd}\"";
-            terminal = "uwsm app -- foot";
             colors = {
                 background = colors_sway.red;
                 focused = {
@@ -78,6 +75,7 @@ in {
             floating = {
                 border = 2;
                 titlebar = false;
+                modifier = "Mod4";
             };
             focus = {
                 followMouse = "yes";
@@ -97,6 +95,82 @@ in {
                     xkb_numlock = "enabled";
                 };
             };
+            keybindings = let
+                modifier = "Mod4";
+                menu = "rofi -show-icons -show drun -run-command \"uwsm app -- {cmd}\"";
+                terminal = "uwsm app -- foot";
+            in {
+                "${modifier}+Return" = "exec ${terminal}";
+                "${modifier}+Space" = "exec ${menu}";
+
+                "${modifier}+q" = "kill";
+
+                "${modifier}+Left" = "focus left";
+                "${modifier}+Right" = "focus right";
+                "${modifier}+Up" = "focus up";
+                "${modifier}+Down" = "focus down";
+                "${modifier}+Shift+Left" = "move left";
+                "${modifier}+Shift+Right" = "move right";
+                "${modifier}+Shift+Up" = "move up";
+                "${modifier}+Shift+Down" = "move down";
+                "${modifier}+Alt+Left" = "focus prev sibling";
+                "${modifier}+Alt+Right" = "focus next sibling";
+                "${modifier}+Alt+Up" = "focus parent";
+                "${modifier}+Alt+Down" = "focus child";
+
+                "${modifier}+h" = "focus left";
+                "${modifier}+l" = "focus right";
+                "${modifier}+k" = "focus up";
+                "${modifier}+j" = "focus down";
+                "${modifier}+Shift+h" = "move left";
+                "${modifier}+Shift+l" = "move right";
+                "${modifier}+Shift+k" = "move up";
+                "${modifier}+Shift+j" = "move down";
+                "${modifier}+Alt+h" = "focus prev sibling";
+                "${modifier}+Alt+l" = "focus next sibling";
+                "${modifier}+Alt+k" = "focus parent";
+                "${modifier}+Alt+j" = "focus child";
+
+                "${modifier}+Tab" = "focus next sibling";
+                "${modifier}+Shift+Tab" = "focus prev sibling";
+
+                "${modifier}+1" = "workspace number 1";
+                "${modifier}+2" = "workspace number 2";
+                "${modifier}+3" = "workspace number 3";
+                "${modifier}+4" = "workspace number 4";
+                "${modifier}+5" = "workspace number 5";
+                "${modifier}+6" = "workspace number 6";
+                "${modifier}+7" = "workspace number 7";
+                "${modifier}+8" = "workspace number 8";
+                "${modifier}+9" = "workspace number 9";
+                "${modifier}+0" = "workspace number 10";
+
+                "${modifier}+Shift+1" = "move container to workspace number 1";
+                "${modifier}+Shift+2" = "move container to workspace number 2";
+                "${modifier}+Shift+3" = "move container to workspace number 3";
+                "${modifier}+Shift+4" = "move container to workspace number 4";
+                "${modifier}+Shift+5" = "move container to workspace number 5";
+                "${modifier}+Shift+6" = "move container to workspace number 6";
+                "${modifier}+Shift+7" = "move container to workspace number 7";
+                "${modifier}+Shift+8" = "move container to workspace number 8";
+                "${modifier}+Shift+9" = "move container to workspace number 9";
+                "${modifier}+Shift+0" = "move container to workspace number 10";
+
+                "${modifier}+b" = "split horizontal";
+                "${modifier}+v" = "split vertical";
+                "${modifier}+semicolon" = "split toggle";
+                "${modifier}+n" = "split none";
+
+                "${modifier}+a" = "layout toggle split";
+                "${modifier}+s" = "layout stacking";
+                "${modifier}+d" = "layout tabbed";
+
+                "${modifier}+f" = "floating toggle";
+                "${modifier}+Shift+f" = "fullscreen";
+                "${modifier}+Alt+f" = "focus mode_toggle";
+
+                "${modifier}+r" = "mode resize";
+            };
             window = {
                 border = 2;
                 titlebar = false;
@@ -104,6 +178,7 @@ in {
         };
         extraConfig = ''
             exec "uwsm app -- ${pkgs.swayidle}/bin/swayidle -w -C $XDG_CONFIG_HOME/swayidle/config"
+            tiling_drag enable
             titlebar_border_thickness 2
             include /etc/sway/config.d/*
             include conf.d/*

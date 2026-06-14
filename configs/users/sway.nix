@@ -274,4 +274,10 @@ in {
         '';
         target = "mako/config";
     };
+
+    # Configure Rofi
+    xdg.configFile.rofi = {
+        source = ../../resources/config.rasi;
+        target = "rofi/config.rasi";
+    };
 }

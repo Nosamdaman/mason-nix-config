@@ -46,6 +46,11 @@
             };
             generateCompletions = true;
             interactiveShellInit = ''
+            set -g fish_prompt_pwd_dir_length 0
+            set -g fish_greeting
+            set -g color_virtual_env_str black
+            set -g color_virtual_env_bg brmagenta
+            setenv VIRTUAL_ENV_DISABLE_PROMPT 1
             eval (dircolors --c-shell $XDG_CONFIG_HOME/dircolors/solarized-dark) | true
             '';
         };

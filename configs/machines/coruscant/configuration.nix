@@ -31,7 +31,7 @@
         enable = true;
         target = "/sway/config.d/output.conf";
         text = ''
-        output DP-1 mode 3440x1440@144Hz
+        output DP-1 mode 3440x1440@144Hz render_bit_depth 8 hdr off
         '';
     };
 

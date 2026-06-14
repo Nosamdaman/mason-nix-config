@@ -116,6 +116,9 @@
         plugins = with pkgs; [ thunar-archive-plugin thunar-volman ];
     };
 
+    # Enable GVfs, a service that will automatically mount stuff for us and iteracti with Thunar
+    services.gvfs.enable = true;
+
     # Firefox will be our primary web browser
     programs.firefox.enable = true;
 

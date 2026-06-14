@@ -171,13 +171,17 @@ in {
 
                 "${modifier}+r" = "mode resize";
             };
+            startup = [
+                { command = "uwsm app -- ${pkgs.swayidle}/bin/swayidle -w -C $XDG_CONFIG_HOME/swayidle/config"; }
+                { command = "uwsm app -- ${pkgs.mako}/bin/mako"; }
+                { command = "uwsm app -- ${pkgs.thunar}/bin/thunar --daemon"; }
+            ];
             window = {
                 border = 2;
                 titlebar = false;
             };
         };
         extraConfig = ''
-            exec "uwsm app -- ${pkgs.swayidle}/bin/swayidle -w -C $XDG_CONFIG_HOME/swayidle/config"
             tiling_drag enable
             titlebar_border_thickness 2
             include /etc/sway/config.d/*
@@ -252,5 +256,22 @@ in {
             timeout 300 '${pkgs.sway}/bin/swaymsg "output * power off"' resume '${pkgs.sway}/bin/swaymsg "output * power on"'
         '';
         target = "swayidle/config";
+    };
+
+    # Configure mako
+    xdg.configFile.mako = {
+        text = ''
+            default-timeout=5000
+            font=sans 12
+            text-color=${colors_sway.base1}
+            background-color=${colors_sway.base03}
+            height=200
+            width=400
+            border-color=${colors_sway.cyan}
+            border-size=2
+            icons=1
+            icon-path=${pkgs.kdePackages.breeze-icons}/share/icons/breeze-dark
+        '';
+        target = "mako/config";
     };
 }

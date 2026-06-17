@@ -1,5 +1,5 @@
 # This is the configuration for my primary Linux gaming/programming desktop, coruscant
-{ pkgs, ... }: {
+{ config, pkgs, ... }: {
     # Import our base configurations. This desktop is based off of my Sway template and an auto-generated hardware
     # configuration.
     imports = [ ../sway.nix ./hardware-configuration.nix ];
@@ -13,6 +13,7 @@
     hardware.nvidia = {
         open = true;
         modesetting.enable = true;
+        package = config.boot.kernelPackages.nvidiaPackages.latest;
     };
 
     # Use the systemd-boot EFI boot loader.

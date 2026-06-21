@@ -17,35 +17,10 @@
 
     outputs = inputs@{ self, nixpkgs, home-manager, ... }: {
         nixosConfigurations = {
-            nixos = nixpkgs.lib.nixosSystem {
-                modules = [
-                    ./configs/coruscant/configuration.nix
-                    home-manager.nixosModules.home-manager {
-                        home-manager.useGlobalPkgs = true;
-                        home-manager.useUserPackages = true;
-                        home-manager.extraSpecialArgs = { inherit inputs; };
-                        home-manager.users.mason = ./configs/users/mason.nix;
-                    }
-                ];
-            };
-            coruscant = nixpkgs.lib.nixosSystem {
-                modules = [
-                    ./configs/machines/coruscant/configuration.nix
-                    home-manager.nixosModules.home-manager {
-                        home-manager.useGlobalPkgs = true;
-                        home-manager.useUserPackages = true;
-                        home-manager.extraSpecialArgs = { inherit inputs; };
-                        home-manager.users.mason = ./configs/users/sway.nix;
-                    }
-                ];
-            };
+            coruscant = import ./configs/machines/coruscant/coruscant.nix inputs;
             coruscant-minimal = nixpkgs.lib.nixosSystem {
                 modules = [ ./configs/machines/coruscant-minimal/configuration.nix ];
             };
-        };
-        homeConfigurations."mason" = home-manager.lib.homeManagerConfiguration {
-	    pkgs = nixpkgs.legacyPackages.x86_64-linux;
-            modules = [ ./configs/wsl/home.nix ];
         };
     };
 }

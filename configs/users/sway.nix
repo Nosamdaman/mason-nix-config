@@ -179,6 +179,12 @@ in {
             window = {
                 border = 2;
                 titlebar = false;
+                commands = [
+                    {
+                        criteria = { app_id = ".*"; };
+                        command = "border pixel 2";
+                    }
+                ];
             };
         };
         extraConfig = ''

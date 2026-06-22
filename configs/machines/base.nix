@@ -166,11 +166,6 @@
                 monospace = [ "FiraCode Nerd Font" ];
                 emoji = [ "Noto Color Emoji" ];
             };
-            antialias = true;
-            hinting = {
-                enable = true;
-                style = "slight";
-            };
         };
     };
 

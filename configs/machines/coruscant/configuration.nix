@@ -36,6 +36,22 @@
         '';
     };
 
+    # Configure font anti-aliasing settings for our monitor
+    fonts = {
+        fontconfig = {
+            enable = true;
+            antialias = true;
+            hinting = {
+                enable = true;
+                style = "full";
+            };
+            subpixel = {
+                lcdfilter = "none";
+                rgba = "none";
+            };
+        };
+    };
+
     # Enable support for bluetooth
     hardware.bluetooth.enable = true;
 

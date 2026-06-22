@@ -20,6 +20,9 @@
         dns = "dnsmasq";
     };
 
+    # Enable the firewall
+    networking.firewall.enable = true;
+
     # Set the timezone to US/Eastern and enable NTP for clock syncing
     time.timeZone = "US/Eastern";
     services.timesyncd.enable = true;

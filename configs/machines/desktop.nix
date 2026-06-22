@@ -17,6 +17,18 @@
         extraCompatPackages = [ pkgs.proton-ge-bin ];
     };
 
+    # Configure printing support
+    services.printing = {
+        enable = true;
+        cups-pdf.enable = true;
+        drivers = with pkgs; [ cups-filters cups-browsed ];
+    };
+    services.avahi = {
+        enable = true;
+        nssmdns4 = true;
+        openFirewall = true;
+    };
+
     # Enable gamescope, a micro-compositor that can help with game compatibility
     programs.gamescope.enable = true;
 

@@ -43,7 +43,7 @@
             antialias = true;
             hinting = {
                 enable = true;
-                style = "full";
+                style = "slight";
             };
             subpixel = {
                 lcdfilter = "none";

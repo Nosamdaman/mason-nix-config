@@ -26,7 +26,6 @@
     services.avahi = {
         enable = true;
         nssmdns4 = true;
-        openFirewall = true;
     };
 
     # Enable gamescope, a micro-compositor that can help with game compatibility

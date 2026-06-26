@@ -1,7 +1,7 @@
 # This file contains my configuration for a Sway-based linux desktop
-{ pkgs, ... }: {
-    # We'll base this off our desktop configuration
-    imports = [ ./desktop.nix ];
+{ inputs, pkgs, ... }: {
+    # We'll base this off our desktop configuration and use the inputs argument to include the QTEngine module
+    imports = [ ./desktop.nix inputs.qtengine.nixosModules.default ];
 
     # Configure greetd as our display manager
     services.greetd = {
@@ -40,6 +40,18 @@
 
         # This variable tells any wlroots-based wayland compositors to use the Vulkan backend
         WLR_RENDERER = "vulkan";
+    };
+
+    # Configure the system QT themes with qtengine
+    programs.qtengine = {
+        enable = true;
+        config = {
+            theme = {
+                colorScheme = "${pkgs.kdePackages.breeze}/share/color-schemes/BreezeDark.colors";
+                iconTheme = "breeze-dark";
+                style = "breeze";
+            };
+        };
     };
 
     # Configure Polkit for GUI authentication

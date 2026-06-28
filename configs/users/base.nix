@@ -26,7 +26,7 @@
         bash = {
             enable = true;
             shellAliases = {
-                ls = "ls --color=auto --file-type --group-directories-first";
+                ls = "ls --color=auto --file-type --group-directories-first --quoting-style=literal";
                 ll = "ls -l --human-readable --time-style=long-iso";
                 la = "ll -a";
             };
@@ -40,7 +40,7 @@
         fish = {
             enable = true;
             shellAliases = {
-                ls = "ls --color=auto --file-type --group-directories-first";
+                ls = "ls --color=auto --file-type --group-directories-first --quoting-style=literal";
                 ll = "ls -l --human-readable --time-style=long-iso";
                 la = "ll -a";
             };

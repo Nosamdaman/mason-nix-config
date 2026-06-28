@@ -126,6 +126,7 @@
         gnupg
         libpkgconf
         libtool
+        libtree
         meson
         ninja
         pass-wayland

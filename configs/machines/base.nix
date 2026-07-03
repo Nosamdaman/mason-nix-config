@@ -115,6 +115,7 @@ in {
         binutils
         bison
         clang
+        clang-tools
         cmakeWithGui
         cuda-packages.cuda-devenv_13_3
         cuda-packages.cuda-devenv_13_0
@@ -136,6 +137,7 @@ in {
         ninja
         pass-wayland
         perf
+        pyright
         texinfo
         tig
     ];

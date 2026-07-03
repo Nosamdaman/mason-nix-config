@@ -20,9 +20,13 @@
             url = "github:kossLAN/qtengine";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+        nix-cuda-toolkit = {
+            url = "github:Nosamdaman/nix-cuda-toolkit";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
     };
 
-    outputs = inputs@{ self, nixpkgs, home-manager, ... }: {
+    outputs = inputs@{ self, nixpkgs, ... }: {
         nixosConfigurations = {
             coruscant = import ./configs/machines/coruscant/coruscant.nix inputs;
             coruscant-minimal = nixpkgs.lib.nixosSystem {

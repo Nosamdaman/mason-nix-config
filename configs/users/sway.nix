@@ -169,12 +169,16 @@ in {
                 "${modifier}+Shift+f" = "fullscreen";
                 "${modifier}+Alt+f" = "focus mode_toggle";
 
+                "${modifier}+c" = "exec ${pkgs.cliphist}/bin/cliphist list | rofi -dmenu -p \"Clipboard History\" | cliphist decode | wl-copy";
+
                 "${modifier}+r" = "mode resize";
             };
             startup = [
                 { command = "uwsm app -- ${pkgs.swayidle}/bin/swayidle -w -C $XDG_CONFIG_HOME/swayidle/config"; }
                 { command = "uwsm app -- ${pkgs.mako}/bin/mako"; }
                 { command = "uwsm app -- ${pkgs.thunar}/bin/thunar --daemon"; }
+                { command = "uwsm app -- ${pkgs.wl-clipboard}/bin/wl-paste --type text --watch ${pkgs.cliphist}/bin/cliphist store"; }
+                { command = "uwsm app -- ${pkgs.wl-clipboard}/bin/wl-paste --type image --watch ${pkgs.cliphist}/bin/cliphist store"; }
             ];
             window = {
                 border = 2;

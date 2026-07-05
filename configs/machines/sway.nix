@@ -155,6 +155,10 @@
         # Rofi will be our launcher
         rofi
 
+        # Cliphist and wl-clipboard will manage our clipboard history
+        cliphist
+        wl-clipboard
+
         # Mako will be our notification daemon and libnotify will be the intermediate handler
         mako
         libnotify

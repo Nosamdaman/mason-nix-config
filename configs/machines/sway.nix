@@ -166,11 +166,12 @@
         # Pavucontrol is how we'll manage audio devices
         pavucontrol
 
-        # SwayBG will manager our wallpaper
-        swaybg
-
         # SwayIdle will be our idle daemon
         swayidle
+
+        # imv and mpv will be our media programs
+        imv
+        mpv
     ];
 
     # Enable a couple of XDG portals to handle application communication and a few other Wayland features

@@ -183,6 +183,7 @@ in {
 
     # Create our default users, this is just me for now
     users.users.mason = {
+        description = "Mason Davy";
         isNormalUser = true;
         extraGroups = [ "wheel" "networkmanager" ];
     };

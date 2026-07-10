@@ -1,5 +1,5 @@
 # This is the configuration for my primary gaming/programming machine coruscant, but using the plasma 6 desktop
-{ ... }: {
+{ config, pkgs, ... }: {
     imports = [ ../plasma.nix ./hardware-configuration.nix ];
 
     # Set the hostname

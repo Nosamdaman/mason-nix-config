@@ -29,7 +29,7 @@
     outputs = inputs@{ self, nixpkgs, ... }: {
         nixosConfigurations = {
             coruscant = import ./configs/machines/coruscant/coruscant.nix inputs;
-            courscant-plasma = import ./configs/machines/coruscant-plasma/coruscant-plasma.nix inputs;
+            coruscant-plasma = import ./configs/machines/coruscant-plasma/coruscant-plasma.nix inputs;
         };
     };
 }

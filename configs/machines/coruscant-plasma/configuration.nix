@@ -25,6 +25,14 @@
     boot.initrd.kernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
     boot.kernelParams = [ "quiet" "video=DP-1:3440x1440@144" ];
 
+    # Disable sleep, this is a desktop, we don't want it
+    systemd.sleep.settings.Sleep = {
+        AllowSuspend = "no";
+        AllowHibernation = "no";
+        AllowHybridSleep = "no";
+        AllowSuspendThenHibernate = "no";
+    };
+
     # Configure font anti-aliasing settings for our monitor
     fonts = {
         fontconfig = {

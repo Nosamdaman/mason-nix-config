@@ -1,12 +1,9 @@
+# This is the configuration for my primary gaming/programming machine coruscant, but using the plasma 6 desktop
 { ... }: {
-    imports = [
-      ../plasma.nix
-      ./hardware-configuration.nix
-    ];
+    imports = [ ../plasma.nix ./hardware-configuration.nix ];
 
-    # Use the systemd-boot EFI boot loader.
-    boot.loader.systemd-boot.enable = true;
-    boot.loader.efi.canTouchEfiVariables = true;
+    # Set the hostname
+    networking.hostName = "coruscant-plasma";
 
     # Add support for NVIDIA graphics cards
     hardware.graphics.enable = true;
@@ -14,7 +11,12 @@
     hardware.nvidia = {
         open = true;
         modesetting.enable = true;
+        package = config.boot.kernelPackages.nvidiaPackages.latest;
     };
+
+    # Use the systemd-boot EFI boot loader.
+    boot.loader.systemd-boot.enable = true;
+    boot.loader.efi.canTouchEfiVariables = true;
 
     # Set our vanity boot options. We'll enable Plymouth for a nice boot splash screen. Note that by loading the NVIDIA
     # modules early, we make Plymouth work much more consistently. We'll also silence the boot messages prior to
@@ -23,8 +25,30 @@
     boot.initrd.kernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
     boot.kernelParams = [ "quiet" "video=DP-1:3440x1440@144" ];
 
-    # Set the hostname
-    networking.hostName = "coruscant-minimal";
+    # Configure font anti-aliasing settings for our monitor
+    fonts = {
+        fontconfig = {
+            enable = true;
+            antialias = true;
+            hinting = {
+                enable = true;
+                style = "slight";
+            };
+            subpixel = {
+                lcdfilter = "none";
+                rgba = "none";
+            };
+        };
+    };
+
+    # Enable support for bluetooth
+    hardware.bluetooth.enable = true;
+
+    # Install any additional system-wide packages
+    environment.systemPackages = with pkgs; [
+        # BlueTUI provides a nice TUI from which we can manage our bluetooth connections
+        bluetui
+    ];
 
     # This option defines the first version of NixOS you have installed on this particular machine,
     # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.

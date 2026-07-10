@@ -29,9 +29,7 @@
     outputs = inputs@{ self, nixpkgs, ... }: {
         nixosConfigurations = {
             coruscant = import ./configs/machines/coruscant/coruscant.nix inputs;
-            coruscant-minimal = nixpkgs.lib.nixosSystem {
-                modules = [ ./configs/machines/coruscant-minimal/configuration.nix ];
-            };
+            courscant-plasma = import ./configs/machines/coruscant-plasma/coruscant-plasma.nix inputs;
         };
     };
 }

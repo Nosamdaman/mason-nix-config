@@ -44,5 +44,8 @@
 
         # qBitTorrent is for getting our all our ... erm ... Linux ISOs ....
         qbittorrent
+
+        # Spotify is a music service
+        spotify
     ];
 }

@@ -87,7 +87,7 @@
             package = pkgs.btop-cuda;
             settings = {
                 color_theme = "solarized_dark";
-                theme_background = true;
+                theme_background = false;
                 truecolor = true;
                 vim_keys = true;
                 disable_mouse = false;

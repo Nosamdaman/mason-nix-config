@@ -35,15 +35,6 @@
         AllowSuspendThenHibernate = "no";
     };
 
-    # Set the video mode for sway globally using a custom config
-    environment.etc.sway-output = {
-        enable = true;
-        target = "/sway/config.d/output.conf";
-        text = ''
-        output DP-1 mode 3440x1440@144Hz
-        '';
-    };
-
     # Configure font anti-aliasing settings for our monitor
     fonts = {
         fontconfig = {

@@ -52,6 +52,9 @@
         # Rofi will be our launcher
         rofi
 
+        # XWayland Satellite will handle all XWayland duties for us
+        xwayland-satellite
+
         # Cliphist and wl-clipboard will manage our clipboard history
         cliphist
         wl-clipboard
@@ -65,6 +68,9 @@
 
         # SwayIdle will be our idle daemon
         swayidle
+
+        # SwayBG will manage our wallpaper
+        swaybg
 
         # imv and mpv will be our media programs
         imv

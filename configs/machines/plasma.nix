@@ -11,5 +11,8 @@
     environment.systemPackages = with pkgs; [
         # Foot will be our terminal emulator
         foot
+
+        # MPV will be our video player
+        mpv
     ];
 }

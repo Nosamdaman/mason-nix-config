@@ -7,7 +7,7 @@ inputs@{ nixpkgs, home-manager, ... }: nixpkgs.lib.nixosSystem {
         home-manager.nixosModules.home-manager {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.mason = ../../users/base.nix;
+            home-manager.users.mason = ../../users/niri.nix;
         }
     ];
 }

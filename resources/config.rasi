@@ -2,7 +2,7 @@
     base0: rgb (131, 148, 150);
     base2: rgb (238, 232, 213);
     base02: rgb (7, 54, 66);
-    transBase03: rgba (0, 43, 54, 100%);
+    transBase03: rgba (0, 43, 54, 75%);
     cyan: rgb (42, 161, 152);
     blue: rgb (38, 139, 210);
 }
@@ -10,9 +10,9 @@
 window {
     font: "Noto Sans Nerd Font 14";
     background-color: @transBase03;
-    border: 2px;
+    border: 1px;
     border-color: @cyan;
-    border-radius: 0px;
+    border-radius: 6px;
     padding: 0px;
     margin: 0px;
 }
@@ -47,7 +47,7 @@ inputbar {
     background-color: @base02;
     padding: 4px;
     margin: 0px;
-    border: 0px 0px 2px 0px;
+    border: 0px 0px 1px 0px;
     border-color: @cyan;
 }
 
@@ -60,7 +60,7 @@ listview {
 }
 
 element {
-    border-radius: 0px;
+    border-radius: 6px;
     padding: 4px;
     margin: 0px;
     border: 0px;

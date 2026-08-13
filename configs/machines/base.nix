@@ -64,6 +64,9 @@ in {
         gnupg.agent.enable = true;
     };
 
+    # Enable podman as our virtualization tool
+    virtualisation.podman.enable = true;
+
     # Here's where we'll configure the rest of the system packages. These just get installed as is.
     environment.systemPackages = with pkgs; [
         # Install coreutils and a few other packages I consider essential for a usable Linux system
@@ -121,6 +124,7 @@ in {
         cuda-packages.cuda-devenv_13_0
         cuda-packages.cuda-devenv_12_8
         debugedit
+        distrobox
         fakeroot
         file
         flex

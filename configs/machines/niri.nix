@@ -72,6 +72,9 @@
         # SwayBG will manage our wallpaper
         swaybg
 
+        # ironbar will be our status bar
+        ironbar
+
         # imv and mpv will be our media programs
         imv
         mpv

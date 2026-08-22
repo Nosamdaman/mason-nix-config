@@ -84,6 +84,12 @@ in {
         };
     };
 
+    # Configure niri
+    xdg.configFile.niri-base = {
+        source = ../../resources/niri-base.kdl;
+        target = "niri/base.kdl";
+    };
+
     # Configure mako
     xdg.configFile.mako = {
         text = ''

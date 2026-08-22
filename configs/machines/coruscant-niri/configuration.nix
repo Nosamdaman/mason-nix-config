@@ -17,8 +17,26 @@
     };
     hardware.nvidia-container-toolkit.enable = true;
 
-    # Use the systemd-boot EFI boot loader.
-    boot.loader.systemd-boot.enable = true;
+    # Use the Limine EFI boot loader.
+    boot.loader.limine = {
+        enable = true;
+        extraConfig = ''
+            timeout: 3
+            quiet: yes
+            firmware_logo: yes
+        '';
+        extraEntries = ''
+            /NixOS KDE Plasma
+            protocol: efi
+            comment: Boot into NixOS with the Plasma Desktop
+            path: uuid(18f842e6-ff2b-4dd8-a5bc-328622cbf506):/EFI/BOOT/BOOTX64.efi
+
+            /Windows 11
+            protocol: efi
+            comment: Boot into Windows 11
+            path: uuid(d0690af6-2203-43fa-8393-6f081c840360):/EFI/Boot/bootx64.efi
+        '';
+    };
     boot.loader.efi.canTouchEfiVariables = true;
 
     # Set our vanity boot options. We'll enable Plymouth for a nice boot splash screen. Note that by loading the NVIDIA

@@ -5,6 +5,8 @@ spawn-at-startup "swaybg" "--output" "*" "--mode" "fill" "--image" "/home/mason/
 spawn-at-startup "ironbar"
 spawn-at-startup "thunar" "--daemon"
 spawn-at-startup "mako"
+spawn-at-startup "wl-paste" "--type" "text" "--watch" "cliphist" "store"
+spawn-at-startup "wl-paste" "--type" "image" "--watch" "cliphist" "store"
 
 // Prefer server-side decorations
 prefer-no-csd
@@ -171,6 +173,9 @@ binds {
     // Use F to handle floating windows
     Mod+F { toggle-window-floating; }
     Mod+Shift+F { switch-focus-between-floating-and-tiling; }
+
+    // Use V to manage the clipboard history
+    Mod+V { spawn-sh "cliphist list | rofi -dmenu -p \"Clipboard History\" | cliphist decode | wl-copy"; }
 
     // Example volume keys mappings for PipeWire & WirePlumber.
     // The allow-when-locked=true property makes them work even when the session is locked.

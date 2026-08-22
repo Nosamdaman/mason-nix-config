@@ -2,9 +2,7 @@
 #
 # This file defines a NixOS module representing the most basic configuration for my NixOS systems. It makes no
 # assumptions about hardware and doesn't come with a desktop environment pre-configured.
-{ config, pkgs, inputs, ... }: let
-    cuda-packages = inputs.nix-cuda-toolkit.packages.${pkgs.stdenv.hostPlatform.system};
-in {
+{ config, pkgs, ... }: {
     # Configure nix itself. We'll allow for the installation of non-free software and enable support for flakes and the
     # new nix command line. We'll also increase the download buffer size.
     nixpkgs.config.allowUnfree = true;
@@ -120,9 +118,6 @@ in {
         clang
         clang-tools
         cmakeWithGui
-        cuda-packages.cuda-devenv_13_3
-        cuda-packages.cuda-devenv_13_0
-        cuda-packages.cuda-devenv_12_8
         debugedit
         distrobox
         fakeroot

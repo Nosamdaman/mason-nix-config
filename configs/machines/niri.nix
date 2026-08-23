@@ -1,12 +1,24 @@
 # Configure a niri-based desktop environment
-{ config, pkgs, ... }: {
-    # We'll base this off our desktop configuration
-    imports = [ ./desktop.nix ];
+{ inputs, pkgs, ... }: {
+    # We'll base this off our desktop configuration and use the inputs argument to include the QTEngine module
+    imports = [ ./desktop.nix inputs.qtengine.nixosModules.default ];
 
     # Niri will be our window-manager/compositor (obviously)
     programs.niri = {
         enable = true;
         useNautilus = false;
+    };
+
+    # Configure the system QT themes with qtengine
+    programs.qtengine = {
+        enable = true;
+        config = {
+            theme = {
+                colorScheme = "${pkgs.kdePackages.breeze}/share/color-schemes/BreezeDark.colors";
+                iconTheme = "breeze-dark";
+                style = "breeze";
+            };
+        };
     };
 
     # Configure Polkit for GUI authentication

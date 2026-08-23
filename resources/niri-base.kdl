@@ -92,9 +92,19 @@ window-rule {
     }
 }
 
+// Change style for floating windows
+window-rule {
+    match is-floating=true
+
+    border { active-color "#6C71C4"; }
+
+    shadow { on; }
+}
+
 // Configure VRR for games
 window-rule {
     match app-id="steam_app_.*"
+    match app-id="cs2"
     variable-refresh-rate true
 }
 

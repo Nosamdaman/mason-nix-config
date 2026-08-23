@@ -27,6 +27,7 @@
             coruscant = import ./configs/machines/coruscant/coruscant.nix inputs;
             coruscant-plasma = import ./configs/machines/coruscant-plasma/coruscant-plasma.nix inputs;
             coruscant-niri = import ./configs/machines/coruscant-niri/coruscant-niri.nix inputs;
+            tatooine = import ./configs/machines/tatooine/tatooine.nix inputs;
         };
     };
 }

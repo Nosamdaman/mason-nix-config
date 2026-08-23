@@ -4,6 +4,12 @@
     # configuration.
     imports = [ ../niri.nix ./hardware-configuration.nix ];
 
+    # Enable hardware acceleration
+    hardware.graphics = {
+        enable = true;
+        extraPackages = [ pkgs.intel-media-driver ];
+    };
+
     # Set the hostname
     networking.hostName = "tatooine";
 

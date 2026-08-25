@@ -31,7 +31,7 @@
                 la = "ll -a";
             };
             initExtra = ''
-            PS1='[\u@\h \W]\$ '
+            eval "$(starship init bash)"
             '';
         };
 
@@ -52,6 +52,7 @@
             set -g color_virtual_env_bg brmagenta
             setenv VIRTUAL_ENV_DISABLE_PROMPT 1
             eval (dircolors --c-shell $XDG_CONFIG_HOME/dircolors/solarized-dark) | true
+            starship init fish | source
             '';
         };
 
@@ -124,6 +125,18 @@
         tigrc = {
             source = ../../resources/tigrc;
             target = "tig/config";
+        };
+
+        # Starship prompt config
+        starship = {
+            source = ../../resources/starship.toml;
+            target = "starship.toml";
+        };
+
+        # Fish title function
+        fish_title = {
+            source = ../../resources/fish_title.fish;
+            target = "fish/functions/fish_title.fish";
         };
     };
 

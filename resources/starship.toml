@@ -1,0 +1,60 @@
+format = """\
+    $jobs\
+    $directory\
+    $python\
+    ${custom.git_clean}\
+    ${custom.git_dirty}\
+    $git_branch\
+    $git_commit\
+    $git_status\
+    [\uE0B4 ](fg:prev_bg)
+"""
+add_newline = false
+
+[jobs]
+format = "[\uE0B6](fg:black bg:prev_bg)[$symbol](fg:cyan bg:black)"
+symbol = "\u26A1"
+
+[directory]
+format = "[\uE0B6](fg:blue bg:prev_bg)[$read_only$path](fg:black bg:blue)"
+read_only = "\uF023 "
+home_symbol = "~"
+truncation_length = 0
+truncate_to_repo = false
+
+[python]
+format = "[\uE0B4](fg:prev_bg bg:bright-purple)[ \uEC39 $virtualenv](fg:black bg:bright-purple)"
+detect_files = []
+detect_extensions = []
+
+[custom.git_clean]
+format = "[\uE0B4](fg:prev_bg bg:green)"
+when = "test -z \"$(git status --porcelain --ignore-submodules=dirty --untracked-files=normal)\""
+require_repo = true
+
+[custom.git_dirty]
+format = "[\uE0B4](fg:prev_bg bg:yellow)"
+when = "test -n \"$(git status --porcelain --ignore-submodules=dirty --untracked-files=normal)\""
+require_repo = true
+
+[git_branch]
+format = "[ $symbol$branch](fg:black bg:prev_bg)"
+symbol = "\uE725 "
+only_attached = true
+
+[git_commit]
+format = "[ \uE729 $hash$tag](fg:black bg:prev_bg)"
+tag_disabled = false
+tag_symbol = " \uF412 "
+
+[git_status]
+format = "[( \\[$all_status\\])( $ahead_behind)](fg:black bg:prev_bg)"
+ahead = "\uF176"
+behind = "\uF175"
+diverged = "\uF07D"
+untracked = "?"
+stashed = "\\$"
+modified = "!"
+staged = "+"
+renamed = "\u00BB"
+deleted = "x"

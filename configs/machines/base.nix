@@ -137,6 +137,7 @@
         pass-wayland
         perf
         pyright
+        starship
         texinfo
         tig
     ];

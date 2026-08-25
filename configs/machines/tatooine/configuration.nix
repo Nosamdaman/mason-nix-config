@@ -9,6 +9,7 @@
         enable = true;
         extraPackages = [ pkgs.intel-media-driver ];
     };
+    boot.initrd.kernelModules = [ "i915" ];
 
     # Set the hostname
     networking.hostName = "tatooine";
@@ -20,6 +21,9 @@
     # Set our vanity boot options
     boot.plymouth.enable = true;
     boot.kernelParams = [ "quiet" ];
+
+    # Enable thermald for better CPU scaling
+    services.thermald.enable = true;
 
     # Configure font anti-aliasing settings for our monitor
     fonts = {

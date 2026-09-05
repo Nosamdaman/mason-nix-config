@@ -17,6 +17,14 @@
                 colorScheme = "${pkgs.kdePackages.breeze}/share/color-schemes/BreezeDark.colors";
                 iconTheme = "breeze-dark";
                 style = "breeze";
+                font = {
+                    family = "Noto Sans";
+                    size = 11;
+                };
+                fontFixed = {
+                    family = "FiraCode Nerd Font";
+                    size = 11;
+                };
             };
         };
     };

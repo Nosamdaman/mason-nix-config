@@ -50,5 +50,9 @@
 
         # MKVToolsNix is a really useful collection of utilities for working with MKV files
         mkvtoolnix
+
+        # These are some good DOOM source ports
+        rbdoom-3-bfg
+        uzdoom
     ];
 }

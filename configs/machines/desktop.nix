@@ -40,7 +40,7 @@
         gimp-with-plugins
 
         # LibreOffice is useful for light desktop office work
-        libreoffice-fresh
+        libreoffice-stable
 
         # qBitTorrent is for getting our all our ... erm ... Linux ISOs ....
         qbittorrent

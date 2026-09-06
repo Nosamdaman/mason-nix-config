@@ -52,7 +52,8 @@
         mkvtoolnix
 
         # These are some good DOOM source ports
-        rbdoom-3-bfg
         uzdoom
+        dhewm3
+        rbdoom-3-bfg
     ];
 }

@@ -1,12 +1,12 @@
 // This is my niri configuration
 
 // Startup applications
-spawn-at-startup "swaybg" "--output" "*" "--mode" "fill" "--image" "/home/mason/.config/niri/wallpaper"
-spawn-at-startup "ironbar"
+// spawn-at-startup "swaybg" "--output" "*" "--mode" "fill" "--image" "/home/mason/.config/niri/wallpaper"
+// spawn-at-startup "ironbar"
 spawn-at-startup "thunar" "--daemon"
-spawn-at-startup "mako"
-spawn-at-startup "wl-paste" "--type" "text" "--watch" "cliphist" "store"
-spawn-at-startup "wl-paste" "--type" "image" "--watch" "cliphist" "store"
+// spawn-at-startup "mako"
+// spawn-at-startup "wl-paste" "--type" "text" "--watch" "cliphist" "store"
+// spawn-at-startup "wl-paste" "--type" "image" "--watch" "cliphist" "store"
 
 // Prefer server-side decorations
 prefer-no-csd

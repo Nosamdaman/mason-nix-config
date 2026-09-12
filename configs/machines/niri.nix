@@ -63,6 +63,13 @@
     };
     services.displayManager.regreet.enable = true;
 
+    # Use Noctalia as our desktop shell
+    programs.noctalia = {
+        enable = true;
+        recommendedServices.enable = true;
+        systemd.enable = true;
+    };
+
     # Configure the system QT themes with qtengine
     programs.qtengine = {
         enable = true;
@@ -124,30 +131,30 @@
         foot
 
         # Rofi will be our launcher
-        rofi
+        # rofi
 
         # XWayland Satellite will handle all XWayland duties for us
         xwayland-satellite
 
         # Cliphist and wl-clipboard will manage our clipboard history
-        cliphist
-        wl-clipboard
+        # cliphist
+        # wl-clipboard
 
         # Mako will be our notification daemon and libnotify will be the intermediate handler
-        mako
+        # mako
         libnotify
 
         # Pavucontrol is how we'll manage audio devices
-        pavucontrol
+        # pavucontrol
 
         # SwayIdle will be our idle daemon
-        swayidle
+        # swayidle
 
         # SwayBG will manage our wallpaper
-        swaybg
+        # swaybg
 
         # ironbar will be our status bar
-        ironbar
+        # ironbar
 
         # imv and mpv will be our media programs
         imv

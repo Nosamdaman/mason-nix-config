@@ -9,6 +9,36 @@
         useNautilus = false;
     };
 
+    # Configure greetd as our display manager
+    services.greetd = {
+        enable = true;
+        useTextGreeter = false;
+        settings.default_session = {
+            command = let
+                launch-niri-greeter = pkgs.writeShellScriptBin "launch-niri-greeter" ''
+                    export GTK_USE_PORTAL=0
+                    export GDK_DEBUG=no-portals
+                    ${pkgs.dbus}/bin/dbus-run-session ${pkgs.niri}/bin/niri --config /etc/greetd/niri.kdl >> /dev/null 2>&1
+                '';
+            in "${launch-niri-greeter}/bin/launch-niri-greeter";
+        };
+    };
+    environment.etc = {
+        greetd-niri = {
+            enable = true;
+            target = "/greetd/niri.kdl";
+            text = ''
+                include "/etc/niri/config.kdl"
+
+                spawn-sh-at-startup "${pkgs.regreet}/bin/regreet; niri msg action quit --skip-confirmation"
+                hotkey-overlay {
+                    skip-at-startup
+                }
+            '';
+        };
+    };
+    services.displayManager.regreet.enable = true;
+
     # Configure the system QT themes with qtengine
     programs.qtengine = {
         enable = true;

@@ -79,6 +79,35 @@
         bluetui
     ];
 
+    # Set our machine-specific compositor settings
+    environment.etc = {
+        niri-default = {
+            enable = true;
+            target = "/niri/config.kdl";
+            text = ''
+                output "DP-1" {
+                    mode "3440x1440@143.975"
+                    variable-refresh-rate on-demand=true
+                }
+                spawn-at-startup "swayidle" "-w" "timeout" "300" "niri msg action power-off-monitors"
+                input {
+                    keyboard {
+                        numlock
+                    }
+                    touchpad {
+                        tap
+                        natural-scroll
+                    }
+                    warp-mouse-to-focus
+                    focus-follows-mouse
+                    mouse {
+                        accel-profile "flat"
+                    }
+                }
+            '';
+        };
+    };
+
     # This option defines the first version of NixOS you have installed on this particular machine,
     # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
     #

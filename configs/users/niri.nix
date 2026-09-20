@@ -87,7 +87,7 @@ in {
     # Configure niri
     xdg.configFile.niri-base = {
         source = ../../resources/niri-base.kdl;
-        target = "niri/base.kdl";
+        target = "niri/config.kdl";
     };
 
     # Configure mako

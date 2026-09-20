@@ -4,9 +4,33 @@
     imports = [ ./desktop.nix inputs.qtengine.nixosModules.default ];
 
     # Niri will be our window-manager/compositor (obviously)
+    #
+    # In addition to enabling Niri, we'll create a very basic default config that all our configs should include
     programs.niri = {
         enable = true;
         useNautilus = false;
+    };
+    environment.etc = {
+        niri-default = {
+            enable = true;
+            target = "/niri/config.kdl";
+            text = ''
+                input {
+                    keyboard {
+                        numlock
+                    }
+                    touchpad {
+                        tap
+                        natural-scroll
+                    }
+                    warp-mouse-to-focus
+                    focus-follows-mouse
+                    mouse {
+                        accel-profile "flat"
+                    }
+                }
+            '';
+        };
     };
 
     # Configure greetd as our display manager
@@ -29,7 +53,7 @@
             target = "/greetd/niri.kdl";
             text = ''
                 include "/etc/niri/config.kdl"
-
+                spawn-at-startup "swayidle" "-w" "timeout" "300" "niri msg action power-off-monitors"
                 spawn-sh-at-startup "${pkgs.regreet}/bin/regreet; niri msg action quit --skip-confirmation"
                 hotkey-overlay {
                     skip-at-startup

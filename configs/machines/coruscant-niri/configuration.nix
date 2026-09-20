@@ -89,21 +89,6 @@
                     mode "3440x1440@143.975"
                     variable-refresh-rate on-demand=true
                 }
-                spawn-at-startup "swayidle" "-w" "timeout" "300" "niri msg action power-off-monitors"
-                input {
-                    keyboard {
-                        numlock
-                    }
-                    touchpad {
-                        tap
-                        natural-scroll
-                    }
-                    warp-mouse-to-focus
-                    focus-follows-mouse
-                    mouse {
-                        accel-profile "flat"
-                    }
-                }
             '';
         };
     };

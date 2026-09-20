@@ -1,12 +1,7 @@
 // This is my niri configuration
 
 // Startup applications
-// spawn-at-startup "swaybg" "--output" "*" "--mode" "fill" "--image" "/home/mason/.config/niri/wallpaper"
-// spawn-at-startup "ironbar"
 spawn-at-startup "thunar" "--daemon"
-// spawn-at-startup "mako"
-// spawn-at-startup "wl-paste" "--type" "text" "--watch" "cliphist" "store"
-// spawn-at-startup "wl-paste" "--type" "image" "--watch" "cliphist" "store"
 
 // Prefer server-side decorations
 prefer-no-csd
@@ -87,18 +82,9 @@ window-rule {
     variable-refresh-rate true
 }
 
-// Ensure that rofi gets blurred properly
+// Ensure that the Noctalia components get blurred properly
 layer-rule {
-    match namespace="rofi"
-    background-effect {
-        blur true
-        xray false
-    }
-}
-
-// Ensure that mako notifications get blurred properly
-layer-rule {
-    match namespace="notifications"
+    match namespace="^noctalia-(bar-[^\"]+|notification|dock|panel|attached-panel|osd)$"
     background-effect {
         blur true
         xray false
@@ -112,7 +98,9 @@ binds {
 
     // Hotkeys for launching programs
     Mod+Return hotkey-overlay-title="Open a Terminal" { spawn "foot"; }
-    Mod+Space hotkey-overlay-title="Run an Application" { spawn "rofi" "-show-icons" "-show" "drun"; }
+    Mod+Space hotkey-overlay-title="Run an Application" { spawn "noctalia" "msg" "panel-toggle" "launcher"; }
+    Mod+Period hotkey-overlay-title="Emoji Picker" { spawn "noctalia" "msg" "panel-toggle" "launcher" "/emo"; }
+    Mod+V hotkey-overlay-title="Clipboard" { spawn "noctalia" "msg" "panel-toggle" "clipboard"; }
     Mod+E hotkey-overlay-title="Open File Browser" { spawn "thunar"; }
 
     // Basic movement is done with Mod + Vim or arrow keys
@@ -204,9 +192,6 @@ binds {
     // Use F to handle floating windows
     Mod+F { toggle-window-floating; }
     Mod+Shift+F { switch-focus-between-floating-and-tiling; }
-
-    // Use V to manage the clipboard history
-    Mod+V { spawn-sh "cliphist list | rofi -dmenu -p \"Clipboard History\" | cliphist decode | wl-copy"; }
 
     // O opens the overview
     Mod+O repeat=false { toggle-overview; }

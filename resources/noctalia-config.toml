@@ -1,0 +1,79 @@
+[bar.default]
+background_opacity = 0.8
+border_width = 1.0
+end = [ "tray", "notifications", "clipboard", "network", "bluetooth", "volume", "battery", "session" ]
+margin_edge = 4
+margin_ends = 4
+radius = 6
+start = [ "launcher", "workspaces", "active_window" ]
+
+[[control_center.shortcuts]]
+type = "wifi"
+
+[[control_center.shortcuts]]
+type = "bluetooth"
+
+[[control_center.shortcuts]]
+type = "power_profile"
+
+[[control_center.shortcuts]]
+type = "clipboard"
+
+[desktop_widgets]
+schema_version = 2
+widget_order = []
+
+    [desktop_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [desktop_widgets.widget]
+
+[idle]
+behavior_order = [ "screen-off", "lock", "lock-and-suspend" ]
+pre_action_fade_seconds = 5
+
+    [idle.behavior.lock]
+    action = "lock"
+    enabled = true
+    timeout = 600.0
+
+    [idle.behavior.lock-and-suspend]
+    action = "lock_and_suspend"
+    enabled = true
+    timeout = 900.0
+
+    [idle.behavior.screen-off]
+    action = "screen_off"
+    enabled = true
+    timeout = 300.0
+
+[location]
+address = "Lebanon Ohio"
+
+[lockscreen]
+blur_intensity = 0.8
+
+[osd]
+background_opacity = 0.8
+
+[shell.panel]
+transparency_mode = "glass"
+
+[theme]
+community_palette = "Solarized"
+source = "community"
+
+[weather]
+unit = "imperial"
+
+[widget.active_window]
+max_length = 700
+title_scroll = "on_hover"
+
+[widget.clock]
+format = "{:%I:%M %p - %B %e %Y}"
+
+[widget.workspaces]
+show_labels = false

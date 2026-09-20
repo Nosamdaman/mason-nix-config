@@ -90,27 +90,9 @@ in {
         target = "niri/config.kdl";
     };
 
-    # Configure mako
-    xdg.configFile.mako = {
-        text = ''
-            default-timeout=5000
-            font=sans 12
-            text-color=#93A1A1
-            background-color=#002B36BF
-            height=200
-            width=400
-            border-color=#2AA198
-            border-size=1
-            border-radius=6
-            icons=1
-            icon-path=${pkgs.kdePackages.breeze-icons}/share/icons/breeze-dark
-        '';
-        target = "mako/config";
-    };
-
-    # Configure Rofi
-    xdg.configFile.rofi = {
-        source = ../../resources/config.rasi;
-        target = "rofi/config.rasi";
+    # Configure Noctalia
+    xdg.configFile.noctalia = {
+        source = ../../resources/noctalia-config.toml;
+        target = "noctalia/config.toml";
     };
 }
